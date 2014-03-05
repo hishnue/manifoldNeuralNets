@@ -1,0 +1,29 @@
+Description:
+
+Created a simple multi-layer feed-forward neural net program based off what I know from differential geometry.
+As a side result, the differential geometry makes a very clean implementation of neural nets,
+when combined with functional programming techniques.
+  
+This can generalize neural nets to arbitrary manifolds, such as projective space.  
+
+Also, built a neural net that uses sin(x) instead of a sigmoid function in parts of the layers, 
+which might work well in producing functions that have some periodic properties.  
+Could also use it as a sort of fourier transform.   
+
+This program does not monitor the convergence or have great convergence techniques, but that wasn't the intention.  
+I mostly wanted to make sure that the differenctial geometry checks out.  The idea is simple:  A neural net
+is just a bunch of functions composed.  You can tack an energy function into \mathbb{R} on the end, and then
+you have a one parameter family of differentials \lambda*dx which you can pull back to each of the parameter
+spaces to do a flow which will move the energy towards a minima.  
+
+TODO:
+1) Improve convergence.
+2) Monitor convergence.
+3) Use the circleNets on some real world data and see if it fits it well.
+4) Build unsupervised techniques to instantiate the nets.
+ -- This will be very easy with sparse filtering.
+5) build a neural net on projective space
+ -- Will probably have to look into parallelization of projective spaces
+ -- as that is the only way i can think of to make maps out of projective space right now.
+ -- Maps into projective space are easy, as they can be induced by linear transformations.   
+

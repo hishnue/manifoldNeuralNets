@@ -1,6 +1,6 @@
 Description:
 
-Created a simple multi-layer feed-forward neural net program based off what I know from differential geometry.
+Created a simple multi-layer feed-forward neural net program with backpropigation based off what I know from differential geometry.
 As a side result, the differential geometry makes a very clean implementation of neural nets,
 when combined with functional programming techniques.
   
@@ -14,7 +14,7 @@ This program does not monitor the convergence or have great convergence techniqu
 I mostly wanted to make sure that the differenctial geometry checks out.  The idea is simple:  A neural net
 is just a bunch of functions composed.  You can tack an energy function into \mathbb{R} on the end, and then
 you have a one parameter family of differentials \lambda*dx which you can pull back to each of the parameter
-spaces to do a flow which will move the energy towards a minima.  
+spaces to do a flow which will move the energy function towards a minima.  
 
 TODO:
 1) Improve convergence.

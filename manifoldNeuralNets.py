@@ -1,7 +1,7 @@
 import math
 import numpy
 """
-Created a simple multi-layer feed-forward neural net program, nnet, based off of what I know from differential geometry.
+Created a simple multi-layer feed-forward neural net program with backpropigation, nnet, based off of what I know from differential geometry.
 This can generalize neural nets to arbitrary manifolds.  
 Also built a neural net that uses sin(x) instead of a sigmoid function in parts of the layers, circleNet, 
 which might work well in producing functions that have some periodic properties.  
@@ -11,7 +11,7 @@ This program does not monitor the convergence or have great convergence techniqu
 I mostly wanted to make sure that the differenctial geometry checks out.  The idea is simple:  A neural net
 is just a bunch of functions composed.  You can tack an energy function into \mathbb{R} on the end, and then
 you have a one parameter family of differentials \lambda*dx which you can pull back to each of the parameter
-spaces to do a flow which will move the energy towards a minima.  
+spaces to do a flow which will move the energy function towards a minima.  
 """
 
 class nnet():
@@ -71,16 +71,6 @@ class nnet():
    tmp = f(tmp, x)
    result.append(tmp)
   return result
-
-# TODO: Make more generalizable to other manifolds.  Do circles first, as you know how to map in and out of them and they are groups.   
-# Just replace arctan with sin some times and it should be equivalent.  
-# TODO: A nnet that takes end values in a circle, but with energy function that tries to make it like the uniform distribution.  probably maximum entropy on the circle.  
-# could make it complex too using e^(i * theta) and then use to process pictures and the like.  see if they can learn bare pots from marked ones, or handwriting.  
-# Circle to circle maps could be rotations as the wrapping maps have a discrete parameter space.  
-# TODO: make a neural net with a single end node that guesses the next sample in a time series by pulling back delta*dx.  
-# It could be trained by pushing a difference tangent vector forward and then into the parameters. Try to model a markov process or finite state automata.   
-# TODO:maybe:definitely: make energy function separate so we can edit with different energy functions, make pair: error(y,t), derror(y,t)
-# if i can i should do some sort  of dynamic thing and have the values of the energy function feed into another layer. 
  
 class circleNet():
  def __init__(self, layerSizes, numSins):
@@ -157,4 +147,13 @@ if __name__=='__main__':
   n.train(vs[i % nsamples], ts[i % nsamples], 0.1)
  for i in range(nsamples):
   print i, n.error(n.evaluate(vs[i]), ts[i]) 
- #TODO: make graph of learning rate vs number of training trials, n'stuff.  
+#TODO: make graph of learning rate vs number of training trials, n'stuff.  
+# TODO: Make more generalizable to other manifolds.  Do circles first, as you know how to map in and out of them and they are groups.   
+# Just replace arctan with sin some times and it should be equivalent.  
+# TODO: A nnet that takes end values in a circle, but with energy function that tries to make it like the uniform distribution.   probably maximum entropy on the circle.  
+# could make it complex too using e^(i * theta) and then use to process pictures and the like.  see if they can learn bare pots from marked ones, or handwriting.  
+# Circle to circle maps could be rotations as the wrapping maps have a discrete parameter space.  
+# TODO: make a neural net with a single end node that guesses the next sample in a time series by pulling back delta*dx.  
+# It could be trained by pushing a difference tangent vector forward and then into the parameters. Try to model a markov process or finite state automata.   
+# TODO:maybe:definitely: make energy function separate so we can edit with different energy functions, make pair: error(y,t), derror(y,t)
+# if i can i should do some sort  of dynamic thing and have the values of the energy function feed into another layer. 
